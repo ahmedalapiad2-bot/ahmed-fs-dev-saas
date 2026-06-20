@@ -1,0 +1,38 @@
+import type { Metadata } from 'next';
+// @ts-ignore
+import './globals.css';
+import { Navbar } from '@/components/Navbar';
+import { Footer } from '@/components/Footer';
+import DirProvider from '@/components/DirProvider';
+import { Providers } from './providers';
+import DeviceExperiencePrompt from '@/components/DeviceExperiencePrompt';
+
+export const metadata: Metadata = {
+  title: 'Ahmed FS Dev | Premium Software Systems',
+  description: 'Ahmed FS Dev builds premium dark SaaS websites, dashboards, and enterprise systems.',
+};
+
+
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" dir="ltr">
+
+
+
+      <body className="min-h-screen bg-background text-white">
+        <Providers>
+          <DeviceExperiencePrompt />
+          <DirProvider />
+          <div className="relative isolate overflow-hidden">
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+          </div>
+        </Providers>
+      </body>
+    </html>
+  );
+}
+
+
