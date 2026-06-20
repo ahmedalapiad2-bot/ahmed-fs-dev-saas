@@ -4,6 +4,6 @@ export default function robots() {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://YOUR-DOMAIN.com/sitemap.xml',
+    sitemap: 'https://ahmed-fs-dev-saas.vercel.app/sitemap.xml',
   };
 }
