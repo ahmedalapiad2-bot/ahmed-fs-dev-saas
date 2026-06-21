@@ -99,39 +99,11 @@ export function ModernHero() {
   const isMobile = useIsMobile();
   const reduceMotion = useReducedMotion();
 
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const mobileSlides = [
-    {
-      title: 'AI Operations',
-      image: 'https://www.brevitysoftware.com/wp-content/uploads/2025/07/Saas.png'
-    },
-    {
-      title: 'Product Design',
-      image: 'https://thumbs.dreamstime.com/b/ui-ux-design-ai-analytics-dashboard-concept-laptop-keyboard-businessman-typing-virtual-icons-representing-user-431927739.jpg?w=768'
-    },
-    {
-      title: 'Cloud Infrastructure',
-      image: 'https://caskgov.com/wp-content/uploads/2024/01/cloud-infrastructure-blog-post-jpg.webp'
-    }
-  ];
-
   const enterTransition = useMemo(() => {
     if (reduceMotion) return { duration: 0 };
     if (isMobile) return { duration: 0.35 };
     return { duration: 0.6 };
   }, [isMobile, reduceMotion]);
-
-
-  useEffect(() => {
-    if (!isMobile) return;
-
-    const interval = setInterval(() => {
-      setCurrentSlide(prev => (prev + 1) % 3);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [isMobile]);
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#050814]">
@@ -297,7 +269,7 @@ export function ModernHero() {
               </div>
               <div className="relative h-[280px] overflow-hidden sm:h-[420px]">
                 <Image
-                  src={isMobile ? mobileSlides[currentSlide].image : "https://www.brevitysoftware.com/wp-content/uploads/2025/07/Saas.png"}
+                  src="https://www.brevitysoftware.com/wp-content/uploads/2025/07/Saas.png"
                   alt="Enterprise SaaS dashboard"
                   fill
                   className="object-cover"
@@ -320,7 +292,7 @@ export function ModernHero() {
             animate={reduceMotion ? undefined : { x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.7 }}
             whileHover={isMobile ? undefined : { scale: 1.02, y: -4 }}
-            className="absolute inset-x-0 left-1/2 top-10 z-20 -ml-80 w-64 -translate-x-1/2 hidden lg:block"
+            className="absolute inset-x-0 left-1/2 top-10 z-20 -ml-80 w-64 -translate-x-1/2 block"
           >
             <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/75 shadow-2xl backdrop-blur-2xl">
               <div className="border-b border-white/10 bg-slate-950/70 px-4 py-3 text-xs uppercase tracking-[0.3em] text-cyan-300">
@@ -344,7 +316,7 @@ export function ModernHero() {
             animate={reduceMotion ? undefined : { x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.75 }}
             whileHover={isMobile ? undefined : { scale: 1.02, y: -4 }}
-            className="absolute right-0 top-32 z-10 w-60 hidden lg:block"
+            className="absolute right-0 top-32 z-10 w-60 block"
           >
             <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/75 shadow-2xl backdrop-blur-2xl">
               <div className="border-b border-white/10 bg-slate-950/70 px-4 py-3 text-xs uppercase tracking-[0.3em] text-emerald-300">
@@ -377,10 +349,6 @@ export function ModernHero() {
     </div>
   );
 }
-
-
-
-
 
 
 
