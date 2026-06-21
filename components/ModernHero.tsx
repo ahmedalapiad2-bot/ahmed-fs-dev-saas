@@ -292,7 +292,7 @@ export function ModernHero() {
             animate={reduceMotion ? undefined : { x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.7 }}
             whileHover={isMobile ? undefined : { scale: 1.02, y: -4 }}
-            className="absolute inset-x-0 left-1/2 top-10 z-20 -ml-80 w-64 -translate-x-1/2 block"
+            className={`absolute inset-x-0 left-1/2 top-10 z-20 -ml-80 w-64 -translate-x-1/2 ${isMobile ? "hidden" : "block"}`}
           >
             <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/75 shadow-2xl backdrop-blur-2xl">
               <div className="border-b border-white/10 bg-slate-950/70 px-4 py-3 text-xs uppercase tracking-[0.3em] text-cyan-300">
@@ -316,7 +316,7 @@ export function ModernHero() {
             animate={reduceMotion ? undefined : { x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.75 }}
             whileHover={isMobile ? undefined : { scale: 1.02, y: -4 }}
-            className="absolute right-0 top-32 z-10 w-60 block"
+            className={`absolute right-0 top-32 z-10 w-60 ${isMobile ? "hidden" : "block"}`}
           >
             <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/75 shadow-2xl backdrop-blur-2xl">
               <div className="border-b border-white/10 bg-slate-950/70 px-4 py-3 text-xs uppercase tracking-[0.3em] text-emerald-300">
