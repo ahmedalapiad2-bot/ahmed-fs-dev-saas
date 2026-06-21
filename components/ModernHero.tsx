@@ -15,6 +15,7 @@ function TypewriterWord() {
   const [phase, setPhase] = useState<'typing' | 'pause' | 'deleting'>('typing');
   const isMobile = useIsMobile();
   const reduceMotion = useReducedMotion();
+  const [activeCard, setActiveCard] = useState(0);
 
   const currentWord = ANIMATED_WORDS[wordIndex];
   const typeDuration = reduceMotion ? 0 : Math.max(0.25, currentWord.length * (isMobile ? 0.06 : 0.08));
@@ -98,6 +99,17 @@ function TypewriterWord() {
 export function ModernHero() {
   const isMobile = useIsMobile();
   const reduceMotion = useReducedMotion();
+  const [activeCard, setActiveCard] = useState(0);
+
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const interval = setInterval(() => {
+      setActiveCard((prev) => (prev + 1) % 3);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [isMobile]);
 
   const enterTransition = useMemo(() => {
     if (reduceMotion) return { duration: 0 };
@@ -258,7 +270,7 @@ export function ModernHero() {
             animate={reduceMotion ? undefined : { y: isMobile ? [0, -4, 0] : [0, -8, 0] }}
             transition={{ duration: isMobile ? 4 : 8, repeat: isMobile || reduceMotion ? 0 : Infinity, ease: 'easeInOut' }}
             whileHover={isMobile ? undefined : { scale: 1.015 }}
-            className="relative mx-auto mb-10 w-full max-w-3xl"
+            className={`relative mx-auto mb-10 w-full max-w-3xl ${isMobile && activeCard !== 0 ? "hidden" : "block"}`}
           >
             <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/80 shadow-[0_40px_80px_rgba(15,23,42,0.35)] backdrop-blur-2xl">
               <div className="border-b border-white/10 bg-slate-950/70 px-5 py-3 backdrop-blur-sm">
@@ -292,7 +304,7 @@ export function ModernHero() {
             animate={reduceMotion ? undefined : { x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.7 }}
             whileHover={isMobile ? undefined : { scale: 1.02, y: -4 }}
-            className={`absolute inset-x-0 left-1/2 top-10 z-20 -ml-80 w-64 -translate-x-1/2 ${isMobile ? "hidden" : "block"}`}
+            className={`absolute inset-x-0 left-1/2 top-10 z-20 -ml-80 w-64 -translate-x-1/2 ${isMobile && activeCard !== 1 ? "hidden" : "block"}`}
           >
             <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/75 shadow-2xl backdrop-blur-2xl">
               <div className="border-b border-white/10 bg-slate-950/70 px-4 py-3 text-xs uppercase tracking-[0.3em] text-cyan-300">
@@ -316,7 +328,7 @@ export function ModernHero() {
             animate={reduceMotion ? undefined : { x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.75 }}
             whileHover={isMobile ? undefined : { scale: 1.02, y: -4 }}
-            className={`absolute right-0 top-32 z-10 w-60 ${isMobile ? "hidden" : "block"}`}
+            className={`absolute right-0 top-32 z-10 w-60 ${isMobile && activeCard !== 2 ? "hidden" : "block"}`}
           >
             <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/75 shadow-2xl backdrop-blur-2xl">
               <div className="border-b border-white/10 bg-slate-950/70 px-4 py-3 text-xs uppercase tracking-[0.3em] text-emerald-300">
