@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, Sparkles, ChevronDown } from 'lucide-react';
@@ -10,12 +10,47 @@ import { useIsMobile } from '@/lib/hooks/useIsMobile';
 const ANIMATED_WORDS = ['Solution.', 'Platform.', 'System.', 'Software.', 'Product.'];
 const PAUSE_DURATION = 1000;
 
+const MOBILE_HERO_CARDS = [
+  {
+    id: 'hero-card-0',
+    title: 'Intelligent automation for modern teams',
+    category: 'AI Operations',
+    tag: 'Custom SaaS Platform',
+    accent: 'text-blue-300',
+    description: 'Centralize cloud workflows, observability, and API orchestration in a premium enterprise workspace.',
+    image: 'https://www.brevitysoftware.com/wp-content/uploads/2025/07/Saas.png',
+    alt: 'Enterprise SaaS dashboard',
+    imageHeightClass: 'h-[260px]',
+  },
+  {
+    id: 'hero-card-1',
+    title: 'Product Design',
+    category: 'PRODUCT DESIGN',
+    tag: 'PRODUCT DESIGN',
+    accent: 'text-cyan-300',
+    description: 'A premium product design dashboard for modern workflows.',
+    image: 'https://thumbs.dreamstime.com/b/ui-ux-design-ai-analytics-dashboard-concept-laptop-keyboard-businessman-typing-virtual-icons-representing-user-431927739.jpg?w=768',
+    alt: 'PRODUCT DESIGN platform screenshot',
+    imageHeightClass: 'h-[240px]',
+  },
+  {
+    id: 'hero-card-2',
+    title: 'Cloud Infrastructure',
+    category: 'Cloud Infrastructure',
+    tag: 'Cloud Infrastructure',
+    accent: 'text-emerald-300',
+    description: 'Monitor distributed systems with premium infrastructure tooling built for scale and security.',
+    image: 'https://caskgov.com/wp-content/uploads/2024/01/cloud-infrastructure-blog-post-jpg.webp',
+    alt: 'Cloud analytics dashboard screenshot',
+    imageHeightClass: 'h-[220px]',
+  },
+];
+
 function TypewriterWord() {
   const [wordIndex, setWordIndex] = useState(0);
   const [phase, setPhase] = useState<'typing' | 'pause' | 'deleting'>('typing');
   const isMobile = useIsMobile();
   const reduceMotion = useReducedMotion();
-  const [activeCard, setActiveCard] = useState(0);
 
   const currentWord = ANIMATED_WORDS[wordIndex];
   const typeDuration = reduceMotion ? 0 : Math.max(0.25, currentWord.length * (isMobile ? 0.06 : 0.08));
@@ -157,7 +192,7 @@ export function ModernHero() {
       </svg>
 
       {/* Content */}
-      <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center justify-center px-4 py-14 text-center sm:px-8 lg:px-12 lg:py-32">
+      <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center justify-center px-4 py-10 text-center sm:px-8 sm:py-14 lg:px-12 lg:py-32">
         {/* Top Badge */}
         <motion.div
           initial={reduceMotion ? undefined : { opacity: 0, y: isMobile ? 6 : 10 }}
@@ -182,7 +217,7 @@ export function ModernHero() {
         >
           <h1 className="text-4xl font-black tracking-tight text-white sm:text-6xl lg:text-7xl leading-[0.95]">
             <span className="block">Build Your Idea.</span>
-            <span className="block inline-block">
+            <span className="block">
               We Code The <span className="block sm:inline"><TypewriterWord /></span>
             </span>
           </h1>
@@ -259,93 +294,145 @@ export function ModernHero() {
           animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           transition={{ duration: isMobile ? 0.6 : 0.8, delay: 0.6 }}
           viewport={isMobile ? { once: true } : undefined}
-          className="relative mb-10 sm:mb-16 w-full max-w-3xl lg:max-w-5xl"
+          className="relative mb-8 sm:mb-16 w-full max-w-3xl lg:max-w-5xl"
         >
           <div className="pointer-events-none absolute inset-x-0 top-6 mx-auto h-28 w-28 md:h-44 md:w-44 rounded-full bg-blue-500/10 blur-[18px] md:blur-3xl opacity-40" />
           <div className="pointer-events-none absolute right-0 top-20 h-20 w-20 md:h-32 md:w-32 rounded-full bg-purple-500/10 blur-[16px] md:blur-3xl opacity-30" />
           <div className="pointer-events-none absolute left-0 top-28 h-16 w-16 md:h-24 md:w-24 rounded-full bg-cyan-400/10 blur-[16px] md:blur-3xl opacity-30" />
 
-          {/* Large Center Window */}
-          <motion.div
-            animate={reduceMotion ? undefined : { y: isMobile ? [0, -4, 0] : [0, -8, 0] }}
-            transition={{ duration: isMobile ? 4 : 8, repeat: isMobile || reduceMotion ? 0 : Infinity, ease: 'easeInOut' }}
-            whileHover={isMobile ? undefined : { scale: 1.015 }}
-            className={`relative mx-auto mb-10 w-full max-w-3xl ${isMobile && activeCard !== 0 ? "hidden" : "block"}`}
-          >
-            <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/80 shadow-[0_40px_80px_rgba(15,23,42,0.35)] backdrop-blur-2xl">
-              <div className="border-b border-white/10 bg-slate-950/70 px-5 py-3 backdrop-blur-sm">
-                <div className="flex items-center justify-between text-xs uppercase tracking-[0.35em] text-gray-400">
-                  <span>Custom SaaS Platform</span>
-                  <span className="text-blue-300">AI Automation</span>
+          <div className="md:hidden">
+            <div className="flex flex-col items-center gap-4 px-2">
+              <AnimatePresence mode="wait">
+                {MOBILE_HERO_CARDS.map((card, index) =>
+                  index === activeCard ? (
+                    <motion.div
+                      key={card.id}
+                      initial={reduceMotion ? undefined : { opacity: 0, scale: 0.96 }}
+                      animate={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
+                      exit={reduceMotion ? undefined : { opacity: 0, scale: 0.96 }}
+                      transition={{ duration: reduceMotion ? 0 : 0.45, ease: 'easeInOut' }}
+                      className="mx-auto w-full max-w-[26rem]"
+                    >
+                      <div className="overflow-hidden rounded-3xl border border-white/10 bg-slate-950/85 shadow-[0_24px_64px_rgba(15,23,42,0.22)] backdrop-blur-2xl">
+                        <div className="border-b border-white/10 bg-slate-950/75 px-5 py-3 text-left text-xs uppercase tracking-[0.32em] text-gray-400">
+                          {card.category}
+                        </div>
+                        <div className={`relative overflow-hidden ${card.imageHeightClass}`}>
+                          <Image
+                            src={card.image}
+                            alt={card.alt}
+                            fill
+                            className="object-cover object-center"
+                          />
+                          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent" />
+                        </div>
+                        <div className="space-y-3 px-6 py-5 text-left">
+                          <p className={`text-xs font-semibold uppercase tracking-[0.24em] ${card.accent}`}>{card.tag}</p>
+                          <h3 className="text-xl font-semibold text-white">{card.title}</h3>
+                          <p className="text-sm leading-6 text-gray-400">{card.description}</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ) : null
+                )}
+              </AnimatePresence>
+
+              <div className="flex items-center justify-center gap-2">
+                {MOBILE_HERO_CARDS.map((card, index) => (
+                  <button
+                    key={card.id}
+                    type="button"
+                    onClick={() => setActiveCard(index)}
+                    className={`h-2.5 w-2.5 rounded-full transition-colors ${activeCard === index ? 'bg-white' : 'bg-white/20 hover:bg-white/40'}`}
+                    aria-label={`Show ${card.category}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="hidden md:block">
+            {/* Large Center Window */}
+            <motion.div
+              animate={reduceMotion ? undefined : { y: isMobile ? [0, -4, 0] : [0, -8, 0] }}
+              transition={{ duration: isMobile ? 4 : 8, repeat: isMobile || reduceMotion ? 0 : Infinity, ease: 'easeInOut' }}
+              whileHover={isMobile ? undefined : { scale: 1.015 }}
+              className={`relative mx-auto mb-10 w-full max-w-3xl ${isMobile && activeCard !== 0 ? "hidden" : "block"}`}
+            >
+              <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/80 shadow-[0_40px_80px_rgba(15,23,42,0.35)] backdrop-blur-2xl">
+                <div className="border-b border-white/10 bg-slate-950/70 px-5 py-3 backdrop-blur-sm">
+                  <div className="flex items-center justify-between text-xs uppercase tracking-[0.35em] text-gray-400">
+                    <span>Custom SaaS Platform</span>
+                    <span className="text-blue-300">AI Automation</span>
+                  </div>
+                </div>
+                <div className="relative h-[280px] overflow-hidden sm:h-[420px]">
+                  <Image
+                    src="https://www.brevitysoftware.com/wp-content/uploads/2025/07/Saas.png"
+                    alt="Enterprise SaaS dashboard"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent" />
+                </div>
+                <div className="space-y-3 px-6 py-5 text-left">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-300">AI Operations</p>
+                  <h3 className="text-2xl font-semibold text-white">Intelligent automation for modern teams</h3>
+                  <p className="max-w-2xl text-sm leading-6 text-gray-400">
+                    Centralize cloud workflows, observability, and API orchestration in a premium enterprise workspace.
+                  </p>
                 </div>
               </div>
-              <div className="relative h-[280px] overflow-hidden sm:h-[420px]">
-                <Image
-                  src="https://www.brevitysoftware.com/wp-content/uploads/2025/07/Saas.png"
-                  alt="Enterprise SaaS dashboard"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent" />
-              </div>
-              <div className="space-y-3 px-6 py-5 text-left">
-                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-300">AI Operations</p>
-                <h3 className="text-2xl font-semibold text-white">Intelligent automation for modern teams</h3>
-                <p className="max-w-2xl text-sm leading-6 text-gray-400">
-                  Centralize cloud workflows, observability, and API orchestration in a premium enterprise workspace.
-                </p>
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          {/* Left Secondary Window */}
-          <motion.div
-            initial={reduceMotion ? undefined : { x: -12, opacity: 0 }}
-            animate={reduceMotion ? undefined : { x: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            whileHover={isMobile ? undefined : { scale: 1.02, y: -4 }}
-            className={`absolute inset-x-0 left-1/2 top-10 z-20 -ml-80 w-64 -translate-x-1/2 ${isMobile ? (activeCard === 1 ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none") : "opacity-100"} transition-all duration-700`}
-          >
-            <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/75 shadow-2xl backdrop-blur-2xl">
-              <div className="border-b border-white/10 bg-slate-950/70 px-4 py-3 text-xs uppercase tracking-[0.3em] text-cyan-300">
-                PRODUCT DESIGN
+            {/* Left Secondary Window */}
+            <motion.div
+              initial={reduceMotion ? undefined : { x: -12, opacity: 0 }}
+              animate={reduceMotion ? undefined : { x: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              whileHover={isMobile ? undefined : { scale: 1.02, y: -4 }}
+              className={`absolute inset-x-0 left-1/2 top-10 z-20 -ml-80 w-64 -translate-x-1/2 ${isMobile ? (activeCard === 1 ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none") : "opacity-100"} transition-all duration-700`}
+            >
+              <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/75 shadow-2xl backdrop-blur-2xl">
+                <div className="border-b border-white/10 bg-slate-950/70 px-4 py-3 text-xs uppercase tracking-[0.3em] text-cyan-300">
+                  PRODUCT DESIGN
+                </div>
+                <div className="relative h-[240px] overflow-hidden">
+                  <Image
+                    src="https://thumbs.dreamstime.com/b/ui-ux-design-ai-analytics-dashboard-concept-laptop-keyboard-businessman-typing-virtual-icons-representing-user-431927739.jpg?w=768"
+                    alt="PRODUCT DESIGN platform screenshot"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent" />
+                </div>
               </div>
-              <div className="relative h-[240px] overflow-hidden">
-                <Image
-                  src="https://thumbs.dreamstime.com/b/ui-ux-design-ai-analytics-dashboard-concept-laptop-keyboard-businessman-typing-virtual-icons-representing-user-431927739.jpg?w=768"
-                  alt="PRODUCT DESIGN platform screenshot"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent" />
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          {/* Right Secondary Window */}
-          <motion.div
-            initial={reduceMotion ? undefined : { x: 12, opacity: 0 }}
-            animate={reduceMotion ? undefined : { x: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.75 }}
-            whileHover={isMobile ? undefined : { scale: 1.02, y: -4 }}
-            className={`absolute right-0 top-32 z-10 w-60 ${isMobile ? (activeCard === 2 ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none") : "opacity-100"} transition-all duration-700`}
-          >
-            <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/75 shadow-2xl backdrop-blur-2xl">
-              <div className="border-b border-white/10 bg-slate-950/70 px-4 py-3 text-xs uppercase tracking-[0.3em] text-emerald-300">
-                Cloud Infrastructure
+            {/* Right Secondary Window */}
+            <motion.div
+              initial={reduceMotion ? undefined : { x: 12, opacity: 0 }}
+              animate={reduceMotion ? undefined : { x: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.75 }}
+              whileHover={isMobile ? undefined : { scale: 1.02, y: -4 }}
+              className={`absolute right-0 top-32 z-10 w-60 ${isMobile ? (activeCard === 2 ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none") : "opacity-100"} transition-all duration-700`}
+            >
+              <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/75 shadow-2xl backdrop-blur-2xl">
+                <div className="border-b border-white/10 bg-slate-950/70 px-4 py-3 text-xs uppercase tracking-[0.3em] text-emerald-300">
+                  Cloud Infrastructure
+                </div>
+                <div className="relative h-[220px] overflow-hidden">
+                  <Image
+                    src="https://caskgov.com/wp-content/uploads/2024/01/cloud-infrastructure-blog-post-jpg.webp"
+                    alt="Cloud analytics dashboard screenshot"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent" />
+                </div>
               </div>
-              <div className="relative h-[220px] overflow-hidden">
-                <Image
-                  src="https://caskgov.com/wp-content/uploads/2024/01/cloud-infrastructure-blog-post-jpg.webp"
-                  alt="Cloud analytics dashboard screenshot"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent" />
-              </div>
-            </div>
-          </motion.div>
-
+            </motion.div>
+          </div>
         </motion.div>
 
         {/* Scroll Indicator */}
