@@ -1,0 +1,105 @@
+246:               <div className="text-[10px] leading-tight text-gray-400 group-hover:text-gray-300">
+247:               Development
+248:               </div>
+249:             </div>
+250:           </motion.div>
+251:           <p className="text-sm text-gray-400">
+252:             Built with modern technologies and scalable architecture
+253:           </p>
+254:         </motion.div>
+255: 
+256:         {/* Floating Hero Showcase */}
+257:         <motion.div
+258:           initial={reduceMotion ? undefined : { opacity: 0, y: isMobile ? 20 : 40 }}
+259:           animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+260:           transition={{ duration: isMobile ? 0.6 : 0.8, delay: 0.6 }}
+261:           viewport={isMobile ? { once: true } : undefined}
+262:           className="relative mb-10 sm:mb-16 w-full max-w-3xl lg:max-w-5xl"
+263:         >
+264:           <div className="pointer-events-none absolute inset-x-0 top-6 mx-auto h-28 w-28 md:h-44 md:w-44 rounded-full bg-blue-500/10 blur-[18px] md:blur-3xl opacity-40" />
+265:           <div className="pointer-events-none absolute right-0 top-20 h-20 w-20 md:h-32 md:w-32 rounded-full bg-purple-500/10 blur-[16px] md:blur-3xl opacity-30" />
+266:           <div className="pointer-events-none absolute left-0 top-28 h-16 w-16 md:h-24 md:w-24 rounded-full bg-cyan-400/10 blur-[16px] md:blur-3xl opacity-30" />
+267: 
+268:           {/* Large Center Window */}
+269:           <motion.div
+270:             animate={reduceMotion ? undefined : { y: isMobile ? [0, -4, 0] : [0, -8, 0] }}
+271:             transition={{ duration: isMobile ? 4 : 8, repeat: isMobile || reduceMotion ? 0 : Infinity, ease: 'easeInOut' }}
+272:             whileHover={isMobile ? undefined : { scale: 1.015 }}
+273:             className="relative mx-auto mb-10 w-full max-w-3xl"
+274:           >
+275:             <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/80 shadow-[0_40px_80px_rgba(15,23,42,0.35)] backdrop-blur-2xl">
+276:               <div className="border-b border-white/10 bg-slate-950/70 px-5 py-3 backdrop-blur-sm">
+277:                 <div className="flex items-center justify-between text-xs uppercase tracking-[0.35em] text-gray-400">
+278:                   <span>Custom SaaS Platform</span>
+279:                   <span className="text-blue-300">AI Automation</span>
+280:                 </div>
+281:               </div>
+282:               <div className="relative h-[280px] overflow-hidden sm:h-[420px]">
+283:                 <Image
+284:                   src="https://www.brevitysoftware.com/wp-content/uploads/2025/07/Saas.png"
+285:                   alt="Enterprise SaaS dashboard"
+286:                   fill
+287:                   className="object-cover"
+288:                 />
+289:                 <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent" />
+290:               </div>
+291:               <div className="space-y-3 px-6 py-5 text-left">
+292:                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-300">AI Operations</p>
+293:                 <h3 className="text-2xl font-semibold text-white">Intelligent automation for modern teams</h3>
+294:                 <p className="max-w-2xl text-sm leading-6 text-gray-400">
+295:                   Centralize cloud workflows, observability, and API orchestration in a premium enterprise workspace.
+296:                 </p>
+297:               </div>
+298:             </div>
+299:           </motion.div>
+300: 
+301:           {/* Left Secondary Window */}
+302:           <motion.div
+303:             initial={reduceMotion ? undefined : { x: -12, opacity: 0 }}
+304:             animate={reduceMotion ? undefined : { x: 0, opacity: 1 }}
+305:             transition={{ duration: 0.6, delay: 0.7 }}
+306:             whileHover={isMobile ? undefined : { scale: 1.02, y: -4 }}
+307:             className="absolute inset-x-0 left-1/2 top-10 z-20 -ml-80 w-64 -translate-x-1/2 hidden lg:block"
+308:           >
+309:             <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/75 shadow-2xl backdrop-blur-2xl">
+310:               <div className="border-b border-white/10 bg-slate-950/70 px-4 py-3 text-xs uppercase tracking-[0.3em] text-cyan-300">
+311:                 PRODUCT DESIGN
+312:               </div>
+313:               <div className="relative h-[240px] overflow-hidden">
+314:                 <Image
+315:                   src="https://thumbs.dreamstime.com/b/ui-ux-design-ai-analytics-dashboard-concept-laptop-keyboard-businessman-typing-virtual-icons-representing-user-431927739.jpg?w=768"
+316:                   alt="PRODUCT DESIGN platform screenshot"
+317:                   fill
+318:                   className="object-cover"
+319:                 />
+320:                 <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent" />
+321:               </div>
+322:             </div>
+323:           </motion.div>
+324: 
+325:           {/* Right Secondary Window */}
+326:           <motion.div
+327:             initial={reduceMotion ? undefined : { x: 12, opacity: 0 }}
+328:             animate={reduceMotion ? undefined : { x: 0, opacity: 1 }}
+329:             transition={{ duration: 0.6, delay: 0.75 }}
+330:             whileHover={isMobile ? undefined : { scale: 1.02, y: -4 }}
+331:             className="absolute right-0 top-32 z-10 w-60 hidden lg:block"
+332:           >
+333:             <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/75 shadow-2xl backdrop-blur-2xl">
+334:               <div className="border-b border-white/10 bg-slate-950/70 px-4 py-3 text-xs uppercase tracking-[0.3em] text-emerald-300">
+335:                 Cloud Infrastructure
+336:               </div>
+337:               <div className="relative h-[220px] overflow-hidden">
+338:                 <Image
+339:                   src="https://caskgov.com/wp-content/uploads/2024/01/cloud-infrastructure-blog-post-jpg.webp"
+340:                   alt="Cloud analytics dashboard screenshot"
+341:                   fill
+342:                   className="object-cover"
+343:                 />
+344:                 <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent" />
+345:               </div>
+346:             </div>
+347:           </motion.div>
+348: 
+349:         </motion.div>
+350: 
