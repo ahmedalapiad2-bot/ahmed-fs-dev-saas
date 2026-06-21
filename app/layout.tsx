@@ -48,6 +48,12 @@ export const metadata: Metadata = {
 
   authors: [{ name: 'Ahmed Saeed' }],
 
+  icons: {
+    icon: '/logo1.png',
+    shortcut: '/logo1.png',
+    apple: '/logo1.png',
+  },
+
   alternates: {
     canonical: 'https://ahmed-fs-dev-saas.vercel.app',
   },
@@ -100,6 +106,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
 
 
 
