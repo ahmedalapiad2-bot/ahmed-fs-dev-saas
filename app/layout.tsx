@@ -49,9 +49,9 @@ export const metadata: Metadata = {
   authors: [{ name: 'Ahmed Saeed' }],
 
   icons: {
-    icon: '/logo1.png',
-    shortcut: '/logo1.png',
-    apple: '/logo1.png',
+    icon: '/logo2.png',
+    shortcut: '/logo2.png',
+    apple: '/logo2.png',
   },
 
   alternates: {
@@ -106,6 +106,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
 
 
 
