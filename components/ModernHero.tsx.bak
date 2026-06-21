@@ -52,7 +52,7 @@ function TypewriterWord() {
   }, [phase, currentWord, deleteDuration, reduceMotion, typeDuration]);
 
   return (
-    <span className="relative inline-flex items-center">
+    <span className="relative inline-flex max-w-full flex-wrap items-center justify-center">
       <span className="invisible whitespace-nowrap">{currentWord}</span>
 
       <span className="absolute inset-0 overflow-hidden">
@@ -145,7 +145,7 @@ export function ModernHero() {
       </svg>
 
       {/* Content */}
-      <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center justify-center px-6 py-20 text-center sm:px-8 lg:px-12 lg:py-32">
+      <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center justify-center px-4 py-14 text-center sm:px-8 lg:px-12 lg:py-32">
         {/* Top Badge */}
         <motion.div
           initial={reduceMotion ? undefined : { opacity: 0, y: isMobile ? 6 : 10 }}
@@ -166,12 +166,12 @@ export function ModernHero() {
           animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           transition={{ ...(enterTransition as any), delay: 0.2 }}
           viewport={isMobile ? { once: true } : undefined}
-          className="mb-6 w-full max-w-5xl px-4"
+          className="mb-6 w-full max-w-3xl lg:max-w-5xl px-4"
         >
-          <h1 className="text-5xl font-black tracking-tight text-white sm:text-6xl lg:text-7xl leading-tight">
+          <h1 className="text-4xl font-black tracking-tight text-white sm:text-6xl lg:text-7xl leading-[0.95]">
             <span className="block">Build Your Idea.</span>
-            <span className="block inline-block whitespace-nowrap">
-              We Code The <TypewriterWord />
+            <span className="block inline-block">
+              We Code The <span className="block sm:inline"><TypewriterWord /></span>
             </span>
           </h1>
         </motion.div>
@@ -197,14 +197,14 @@ export function ModernHero() {
         >
           <Link
             href="/demos"
-            className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-3 font-semibold text-white shadow-lg shadow-blue-500/30 transition hover:shadow-xl hover:shadow-blue-500/40"
+            className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 px-6 py-2.5 sm:px-8 sm:py-3 font-semibold text-white shadow-lg shadow-blue-500/30 transition hover:shadow-xl hover:shadow-blue-500/40"
           >
             Explore Demos
             <ArrowRight size={18} className="transition group-hover:translate-x-1" />
           </Link>
           <Link
             href="/custom-project"
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-gray-500 bg-transparent px-8 py-3 font-semibold text-white transition hover:border-white hover:bg-white/5"
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-gray-500 bg-transparent px-6 py-2.5 sm:px-8 sm:py-3 font-semibold text-white transition hover:border-white hover:bg-white/5"
           >
             Start Your Project
             <ArrowRight size={18} />
@@ -217,7 +217,7 @@ export function ModernHero() {
           animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           transition={{ ...(enterTransition as any), delay: 0.5 }}
           viewport={isMobile ? { once: true } : undefined}
-          className="mb-16 flex flex-col items-center gap-3 sm:flex-row"
+          className="mb-10 sm:mb-16 flex flex-col items-center gap-3 sm:flex-row"
         >
           {/* Premium Trust Badge */}
           <motion.div
@@ -247,7 +247,7 @@ export function ModernHero() {
           animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           transition={{ duration: isMobile ? 0.6 : 0.8, delay: 0.6 }}
           viewport={isMobile ? { once: true } : undefined}
-          className="relative mb-16 w-full max-w-5xl"
+          className="relative mb-10 sm:mb-16 w-full max-w-3xl lg:max-w-5xl"
         >
           <div className="pointer-events-none absolute inset-x-0 top-6 mx-auto h-28 w-28 md:h-44 md:w-44 rounded-full bg-blue-500/10 blur-[18px] md:blur-3xl opacity-40" />
           <div className="pointer-events-none absolute right-0 top-20 h-20 w-20 md:h-32 md:w-32 rounded-full bg-purple-500/10 blur-[16px] md:blur-3xl opacity-30" />
@@ -267,11 +267,12 @@ export function ModernHero() {
                   <span className="text-blue-300">AI Automation</span>
                 </div>
               </div>
-              <div className="relative h-[360px] overflow-hidden sm:h-[420px]">
-                <img
+              <div className="relative h-[280px] overflow-hidden sm:h-[420px]">
+                <Image
                   src="https://www.brevitysoftware.com/wp-content/uploads/2025/07/Saas.png"
                   alt="Enterprise SaaS dashboard"
-                  className="h-full w-full object-cover"
+                  fill
+                  className="object-cover"
                 />
                 <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent" />
               </div>
@@ -298,10 +299,11 @@ export function ModernHero() {
                 PRODUCT DESIGN
               </div>
               <div className="relative h-[240px] overflow-hidden">
-                <img
+                <Image
                   src="https://thumbs.dreamstime.com/b/ui-ux-design-ai-analytics-dashboard-concept-laptop-keyboard-businessman-typing-virtual-icons-representing-user-431927739.jpg?w=768"
                   alt="PRODUCT DESIGN platform screenshot"
-                  className="h-full w-full object-cover"
+                  fill
+                  className="object-cover"
                 />
                 <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent" />
               </div>
@@ -321,10 +323,11 @@ export function ModernHero() {
                 Cloud Infrastructure
               </div>
               <div className="relative h-[220px] overflow-hidden">
-                <img
+                <Image
                   src="https://caskgov.com/wp-content/uploads/2024/01/cloud-infrastructure-blog-post-jpg.webp"
                   alt="Cloud analytics dashboard screenshot"
-                  className="h-full w-full object-cover"
+                  fill
+                  className="object-cover"
                 />
                 <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent" />
               </div>
@@ -342,11 +345,11 @@ export function ModernHero() {
                 AI Workspace
               </div>
               <div className="relative h-56 overflow-hidden">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1000&q=80"
                   alt="PRODUCT DESIGN platform screenshot"
-                  loading="lazy"
-                  className="h-full w-full object-cover"
+                  fill
+                  className="object-cover"
                 />
               </div>
             </motion.div>
@@ -358,11 +361,11 @@ export function ModernHero() {
                 Cloud Insights
               </div>
               <div className="relative h-56 overflow-hidden">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1000&q=80"
                   alt="Cloud analytics dashboard screenshot"
-                  loading="lazy"
-                  className="h-full w-full object-cover"
+                  fill
+                  className="object-cover"
                 />
               </div>
             </motion.div>
@@ -382,3 +385,4 @@ export function ModernHero() {
     </div>
   );
 }
+

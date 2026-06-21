@@ -292,7 +292,7 @@ export function ModernHero() {
             animate={reduceMotion ? undefined : { x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.7 }}
             whileHover={isMobile ? undefined : { scale: 1.02, y: -4 }}
-            className="absolute inset-x-0 left-1/2 top-10 z-20 -ml-80 hidden w-64 -translate-x-1/2 sm:block"
+            className="absolute inset-x-0 left-1/2 top-10 z-20 -ml-80 w-64 -translate-x-1/2 block"
           >
             <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/75 shadow-2xl backdrop-blur-2xl">
               <div className="border-b border-white/10 bg-slate-950/70 px-4 py-3 text-xs uppercase tracking-[0.3em] text-cyan-300">
@@ -316,7 +316,7 @@ export function ModernHero() {
             animate={reduceMotion ? undefined : { x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.75 }}
             whileHover={isMobile ? undefined : { scale: 1.02, y: -4 }}
-            className="absolute right-0 top-32 z-10 hidden w-60 sm:block"
+            className="absolute right-0 top-32 z-10 w-60 block"
           >
             <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/75 shadow-2xl backdrop-blur-2xl">
               <div className="border-b border-white/10 bg-slate-950/70 px-4 py-3 text-xs uppercase tracking-[0.3em] text-emerald-300">
@@ -334,42 +334,6 @@ export function ModernHero() {
             </div>
           </motion.div>
 
-          {/* Mobile stack */}
-          <div className="mt-6 grid gap-4 sm:hidden">
-            <motion.div
-              animate={reduceMotion ? undefined : { y: [0, -3, 0] }}
-              transition={{ duration: 4, repeat: 0, ease: 'easeInOut' }}
-              className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/80 shadow-2xl backdrop-blur-2xl"
-            >
-              <div className="border-b border-white/10 bg-slate-950/70 px-4 py-3 text-xs uppercase tracking-[0.3em] text-blue-300">
-                AI Workspace
-              </div>
-              <div className="relative h-56 overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1000&q=80"
-                  alt="PRODUCT DESIGN platform screenshot"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </motion.div>
-            <motion.div
-              whileHover={isMobile ? undefined : { scale: 1.02 }}
-              className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/80 shadow-2xl backdrop-blur-2xl"
-            >
-              <div className="border-b border-white/10 bg-slate-950/70 px-4 py-3 text-xs uppercase tracking-[0.3em] text-emerald-300">
-                Cloud Insights
-              </div>
-              <div className="relative h-56 overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1000&q=80"
-                  alt="Cloud analytics dashboard screenshot"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </motion.div>
-          </div>
         </motion.div>
 
         {/* Scroll Indicator */}
@@ -385,4 +349,6 @@ export function ModernHero() {
     </div>
   );
 }
+
+
 
