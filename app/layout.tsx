@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     siteName: 'Ahmed FS Dev',
     images: [
       {
-        url: '/logo.png',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Ahmed FS Dev Logo',
@@ -106,6 +106,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
+
 
 
 
