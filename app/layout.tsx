@@ -49,8 +49,8 @@ export const metadata: Metadata = {
   authors: [{ name: 'Ahmed Saeed' }],
 
   icons: {
-    icon: '/logo2.png',
-    shortcut: '/logo2.png',
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
     apple: '/logo2.png',
   },
 
